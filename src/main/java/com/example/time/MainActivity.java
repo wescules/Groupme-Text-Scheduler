@@ -84,13 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
                         mutable = c;
 
-//                        Random randomizer = new Random();
-//                        String random = messages.get(randomizer.nextInt(messages.size()));
-//
-//                        EditText text = (EditText)findViewById(R.id.actualtext);
-//                        text.setText(random);
-//                        AlertReciever.message = random;
-//                        startAlarm(c);
                         chooseTime.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
                     }
                 }, currentHour, currentMinute, false);
