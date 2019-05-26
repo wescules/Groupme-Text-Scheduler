@@ -27,20 +27,19 @@ public class MainActivity extends AppCompatActivity {
     Calendar calendar, mutable;
     EditText chooseTime;
     TimePickerDialog timePickerDialog;
-    Button submit;
 
     int currentHour;
     int currentMinute;
     String amPm;
-
+    Boolean memeIsOn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        final Switch memeswitch = (Switch) findViewById(R.id.memeswitch);
+        final Switch memeswitch = findViewById(R.id.memeswitch);
 
         memeswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -51,17 +50,21 @@ public class MainActivity extends AppCompatActivity {
                     Random randomizer = new Random();
                     String random = messages.get(randomizer.nextInt(messages.size()));
 
-                    EditText text = (EditText)findViewById(R.id.actualtext);
+                    EditText text = findViewById(R.id.actualtext);
                     text.setText(random);
                     AlertReciever.message = random;
+                    memeIsOn = true;
+                    AlertReciever.memeSwitchIsOn = true;
                 } else {
                     //do stuff when Switch if OFF
-                    EditText text = (EditText)findViewById(R.id.actualtext);
+                    AlertReciever.memeSwitchIsOn = false;
+                    memeIsOn = false;
+                    EditText text = findViewById(R.id.actualtext);
                     AlertReciever.message = text.getText().toString();
                 }
             }
         });
-        chooseTime =  (EditText) findViewById(R.id.timeid);
+        chooseTime =  findViewById(R.id.timeid);
         chooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,11 +96,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Button submit = (Button) findViewById(R.id.submitbutton);
+        Button submit = findViewById(R.id.submitbutton);
         submit.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Submitted", Toast.LENGTH_LONG).show();
+
                 startAlarm(mutable);
             }
         });
@@ -110,10 +114,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AlertReciever.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),
+                AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
     }
-
 
 }
 
