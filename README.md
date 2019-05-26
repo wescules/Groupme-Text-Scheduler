@@ -1,7 +1,7 @@
 # Groupme-Text-Scheduler
 
 
-Fun app to shitpost memes at 4 am.. at the same time... everyday...forever
+Fun android app (not on play store) to shitpost memes at 4 am.. at the same time... everyday...forever
 
 # Getting Started
 
