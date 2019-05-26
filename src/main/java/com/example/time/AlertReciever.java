@@ -25,7 +25,7 @@ public class AlertReciever extends BroadcastReceiver {
                 public void run() {
                     try {
                         final String REQUEST_URL = "https://api.groupme.com/v3/bots/post";
-                        final String botID = "d3a71228b287e357cc6a47da31";
+                        final String botID = "INSERT BOT ID HERE";
 
                         String urlParameters = "bot_id=" + botID + "&text=" + message + "&param3=c";
                         try {
