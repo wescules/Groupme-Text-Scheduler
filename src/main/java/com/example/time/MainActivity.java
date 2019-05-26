@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),
-                AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+                AlarmManager.INTERVAL_HALF_DAY, pendingIntent);
     }
 
 }
